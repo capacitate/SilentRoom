@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="kaist.iop.ksh.silentroom" >
+
+
+    <uses-sdk
+        android:minSdkVersion="18"
+        android:targetSdkVersion="18"/>
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+
+    <!-- show advertisement -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="SilentRoom"
+        android:theme="@style/AppTheme" >
+
+        //to execute service when device is booted
+        <service android:name=".SRService"/>
+        <receiver android:name="kaist.iop.ksh.silentroom.AutoStart">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+
+        //iBeacon Service를 사용하기 위해
+        <service android:enabled="true"
+            android:exported="true"
+            android:isolatedProcess="false"
+            android:label="iBeacon"
+            android:name="com.radiusnetworks.ibeacon.service.IBeaconService">
+        </service>
+        <service android:enabled="true"
+            android:name="com.radiusnetworks.ibeacon.IBeaconIntentProcessor">
+            <meta-data android:name="background" android:value="true"/>
+            <intent-filter
+                android:priority="1">
+                <action android:name="kaist.iop.ksh.SilentRoom.DID_RANGING"/>
+                <action android:name="kaist.iop.ksh.SilentRoom.DID_MONITORING"/>
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name=".MainActivity"
+            android:label="SilentRoom" >
+        </activity>
+
+        <activity android:name=".DummyActivity"
+                    android:taskAffinity=".MainActivity"
+                    android:excludeFromRecents="true"
+                    android:theme="@style/EmptyActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".DummyBrightnessActivity"
+                    android:excludeFromRecents="true"
+                    android:theme="@style/EmptyActivity">
+
+        </activity>
+
+        <activity android:name=".DummyAudioActivity"
+                    android:excludeFromRecents="true"
+                    android:theme="@style/EmptyActivity">
+
+        </activity>
+    </application>
+
+</manifest>

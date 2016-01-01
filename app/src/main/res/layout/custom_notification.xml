@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- image view -->
+    <!--<ImageView-->
+        <!--android:id="@+id/notification_image"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--/>-->
+
+    <!-- Notification Title-->
+    <TextView
+        android:text="@string/silent_room"
+        android:id="@+id/notification_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        />
+
+    <!-- scan start button -->
+    <Button
+        android:id="@+id/scan_start"
+        android:text="@string/start_scan"
+        android:padding="4dip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/notification_title"
+        />
+
+    <!-- scan stop button -->
+    <Button
+        android:id="@+id/scan_stop"
+        android:text="@string/stop_scan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/scan_start"
+        android:layout_below="@id/notification_title"
+        />
+
+    <!-- change silent mode and vibrate mode -->
+    <!--<ImageButton-->
+        <!--android:id="@+id/change_mode"-->
+        <!--android:text="@string/change_mode"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_toRightOf="@id/scan_stop"-->
+        <!--android:layout_below="@id/notification_title"-->
+        <!--android:src="@drawable/mute"-->
+        <!--/>-->
+    <FrameLayout
+        android:id="@+id/silent_frame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/notification_title"
+        android:layout_toRightOf="@id/scan_stop">
+        <Button
+            android:id="@+id/silent_mode"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/mute"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/vibrate_frame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/notification_title"
+        android:layout_toRightOf="@id/scan_stop">
+        <Button
+            android:id="@+id/vibrate_mode"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/vibrate"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+
+    <!-- Current time -->
+    <TextView
+        android:text="@string/current_time"
+        android:id="@+id/current_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:textColor="#FFFFFF"
+        />
+
+    <!-- guide -->
+    <Button
+        android:id="@+id/advertisement_btn"
+        android:text="@string/advertisement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FF00FF"
+        android:layout_below="@id/current_time"
+        android:layout_alignParentRight="true"/>
+
+</RelativeLayout>
